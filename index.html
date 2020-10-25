@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.11.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" href="css/style.css"/>
+
+</head>
+<body>
+
+<div id='map'></div>
+
+<script>
+
+mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jaGVuaGFlcnRlbCIsImEiOiJjazl3ajV5MGIwMjF1M2dsaWdiZWc4NzM4In0.7nBsty4Ai9z2zSgc5v5W5Q';
+
+var map = new mapboxgl.Map({
+  container: 'map',
+  style: 'mapbox://styles/jochenhaertel/ckakvslb10lex1il9sa8zil4d/draft',
+  center: [8.6, 53.0583],
+  zoom: 10
+});
+
+// code from the next step will go here!
+var geojson = {
+  type: 'FeatureCollection',
+  features: [{
+    type: 'Feature',
+    geometry: {
+      type: 'Point',
+      coordinates: [8.6422203, 53.0649653]
+    },
+    properties: {
+      title: 'Deutsche Immobilien Holding&nbsp;AG',
+      description: 'Nordenhamer Str. 180,<br>27751 Delmenhorst'
+    }
+  },
+  ]
+};
+var rout = '<a target="_blank" jstcache="52" href="https://maps.google.com/maps?ll=53.064823,8.642415&amp;z=12&amp;t=m&amp;hl=de&amp;gl=DE&amp;mapclient=embed&amp;daddr=Deutsche%20Immobilien%20Holding%20AG%20Nordenhamer%20Str.%20180%2027751%20Delmenhorst@53.0648235,8.642415" class="navigate-link"> <div class="icon navigate-icon"></div> <div jstcache="53" class="navigate-text">Routenplaner</div> </a>'
+// add markers to map
+geojson.features.forEach(function(marker) {
+
+  // create a HTML element for each feature
+  var el = document.createElement('div');
+  el.className = 'marker';
+
+  // make a marker for each feature and add to the map
+  new mapboxgl.Marker(el)
+    .setLngLat(marker.geometry.coordinates)
+    .addTo(map);
+new mapboxgl.Marker(el)
+  .setLngLat(marker.geometry.coordinates)
+  .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
+    .setHTML('<h3>' + marker.properties.title + '</h3><p>' + marker.properties.description + '</p>' + '<p>' + rout + '</p>'))
+  .addTo(map);
+});
+
+
+</script>
+
+</body>
+</html>
