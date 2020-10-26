@@ -51,6 +51,12 @@ body,p,h1,h2,h3,h4,h5,label {
 .mapboxgl-popup {
 	max-width: 200px;
 }
+.popuptext {
+	font-size: 0.8rem;
+	line-height: 1.5;
+	margin-bottom: 1em;
+}
+
 .headquarter {
 	width: 160px;
 	height: 100px;

@@ -20,7 +20,7 @@ mapboxgl.accessToken = 'pk.eyJ1Ijoiam9jaGVuaGFlcnRlbCIsImEiOiJjazl3ajV5MGIwMjF1M
 var map = new mapboxgl.Map({
   container: 'map',
   style: 'mapbox://styles/jochenhaertel/ckakvslb10lex1il9sa8zil4d/draft',
-  center: [8.8738, 53.08539],
+  center: [8.8738, 53.086],
   pitch: 60, // pitch in degrees
   bearing: 0, // bearing in degrees  
   zoom: 16
@@ -39,7 +39,7 @@ var geojson = {
     },
     properties: {
       title: 'Zech Group&nbsp;SE',
-      description: 'August-Bebel-Allee 1<br>28329 Bremen<br>'
+      description: 'August-Bebel-Allee 1<br>28329 Bremen<br>Phone: +49 421 41007 264<br>Fax: +49 421 41007 99 264<br><a href="mailto:info@zech-group.com" class="mail" >info@zech-group.com</a> <br>'
     }
   },
   ]
@@ -59,7 +59,7 @@ geojson.features.forEach(function(marker) {
 new mapboxgl.Marker(el)
   .setLngLat(marker.geometry.coordinates)
   .setPopup(new mapboxgl.Popup({ offset: 25 }) // add popups
-    .setHTML('<h3>' + marker.properties.title + '</h3><div class="headquarter"></div><p>' + marker.properties.description + '</p>' + '<p>' + rout + '</p>'))
+    .setHTML('<h3>' + marker.properties.title + '</h3><div class="headquarter"></div><div class="popuptext">' + marker.properties.description + '</div>' + '<p>' + rout + '</p>'))
   .addTo(map);
 });
 
